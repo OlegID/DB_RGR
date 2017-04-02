@@ -124,6 +124,21 @@ namespace WebRGRApplication.Controllers
             return RedirectToAction("Index");
         }
 
+        // GET: Requests/Composition/5
+        public ActionResult Composition(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var composition = db.CompositionOfRequest.Where(r => r.request_id == id).Include(c => c.Request).Include(c => c.Work);
+            if (composition == null)
+            {
+                return HttpNotFound();
+            }
+            return View(composition.ToList());
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

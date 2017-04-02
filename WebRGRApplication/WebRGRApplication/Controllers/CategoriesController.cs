@@ -115,6 +115,21 @@ namespace WebRGRApplication.Controllers
             return RedirectToAction("Index");
         }
 
+        // GET: Categories/Works/5
+        public ActionResult Works(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var works = db.Work.Where(w => w.category_id == id).Include(w => w.Category);
+            if (works == null)
+            {
+                return HttpNotFound();
+            }
+            return View(works.ToList());
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

@@ -115,6 +115,21 @@ namespace WebRGRApplication.Controllers
             return RedirectToAction("Index");
         }
 
+        // GET: Clients/Requests/5
+        public ActionResult Requests(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var requests = db.Request.Where(r => r.client_id == id).Include(r => r.Client).Include(r => r.Employee);
+            if (requests == null)
+            {
+                return HttpNotFound();
+            }
+            return View(requests.ToList());
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

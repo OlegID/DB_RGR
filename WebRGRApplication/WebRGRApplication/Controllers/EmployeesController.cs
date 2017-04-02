@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using WebRGRApplication;
+using WebRGRApplication.Models;
 
 namespace WebRGRApplication.Controllers
 {
@@ -54,6 +55,10 @@ namespace WebRGRApplication.Controllers
             {
                 db.Employee.Add(employee);
                 db.SaveChanges();
+                /*RegisterViewModel model = new RegisterViewModel();
+                model.Email = employee.login;
+                model.Password = employee.password;
+                new AccountController.Register(model);*/
                 return RedirectToAction("Index");
             }
 
@@ -118,6 +123,21 @@ namespace WebRGRApplication.Controllers
             db.Employee.Remove(employee);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        // GET: Employees/Requests/5
+        public ActionResult Requests(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var requests = db.Request.Where(r => r.employee_id == id).Include(r => r.Client).Include(r => r.Employee);
+            if (requests == null)
+            {
+                return HttpNotFound();
+            }
+            return View(requests.ToList());
         }
 
         protected override void Dispose(bool disposing)
