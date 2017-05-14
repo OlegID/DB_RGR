@@ -296,7 +296,9 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -370,7 +372,13 @@
     <Content Include="Views\Categories\Works.cshtml" />
     <Content Include="Views\Requests\Composition.cshtml" />
     <Content Include="Views\Departments\Employees.cshtml" />
-    <Content Include="Views\Clients\Employees.cshtml" />
+    <Content Include="Views\Clients\SearchResult.cshtml" />
+    <Content Include="Views\Departments\SearchResult.cshtml" />
+    <Content Include="Views\CompositionOfRequests\SearchResult.cshtml" />
+    <Content Include="Views\Employees\SearchResult.cshtml" />
+    <Content Include="Views\Requests\SearchResult.cshtml" />
+    <Content Include="Views\Works\SearchResult.cshtml" />
+    <Content Include="Views\Categories\SearchResult.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

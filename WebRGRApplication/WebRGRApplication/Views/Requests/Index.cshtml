@@ -6,46 +6,62 @@
 
 <h2>@ViewBag.Title</h2>
 
-<p>
-    @Html.ActionLink("Добавить", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.date)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.comment)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Client.name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Employee.name)
-        </th>
-        <th></th>
-    </tr>
+@using (Html.BeginForm("SearchResult", "Requests"))
+{
+    <div class="form-group">
+        <div class="col-md-12" style="padding-left: 0px;">
+            <input type="text" name="searchText" />
+        </div>
+    </div>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.comment)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Client.name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Employee.name)
-        </td>
-        <td>
-            @Html.ActionLink("Изменить", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Подробнее", "Details", new { id=item.id }) |
-            @Html.ActionLink("Удалить", "Delete", new { id=item.id })
-        </td>
-    </tr>
+    <div class="form-group">
+        <div class="col-md-12" style="padding-left: 0px;">
+            <input type="submit" value="Поиск" class="btn btn-default" />
+        </div>
+    </div>
 }
 
-</table>
+        <p>
+            @Html.ActionLink("Добавить", "Create")
+        </p>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.date)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.comment)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Client.name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Employee.name)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.date)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.comment)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Client.name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Employee.name)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Изменить", "Edit", new { id = item.id }) |
+                        @Html.ActionLink("Подробнее", "Details", new { id = item.id }) |
+                        @Html.ActionLink("Удалить", "Delete", new { id = item.id })
+                    </td>
+                </tr>
+            }
+
+        </table>

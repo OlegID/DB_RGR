@@ -139,6 +139,15 @@ namespace WebRGRApplication.Controllers
             return View(composition.ToList());
         }
 
+        public ActionResult SearchResult(String searchText)
+        {
+            var result = db.Request.Where(a => a.comment.ToLower().Contains(searchText.ToLower()) 
+                                            || a.date.ToString().ToLower().Contains(searchText.ToLower()) 
+                                            || a.Client.name.ToLower().Contains(searchText.ToLower()) 
+                                            || a.Employee.name.ToLower().Contains(searchText.ToLower()));
+            return View(result);
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

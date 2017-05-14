@@ -124,6 +124,12 @@ namespace WebRGRApplication.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult SearchResult(String searchText)
+        {
+            var result = db.CompositionOfRequest.Where(a => a.Work.name.ToLower().Contains(searchText.ToLower()) || a.Request.comment.ToLower().Contains(searchText.ToLower()) || a.date.ToString().ToLower().Contains(searchText.ToLower()));
+            return View(result);
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

@@ -130,6 +130,12 @@ namespace WebRGRApplication.Controllers
             return View(works.ToList());
         }
 
+        public ActionResult SearchResult(String searchText)
+        {
+            var result = db.Category.Where(a => a.name.ToLower().Contains(searchText.ToLower()));
+            return View(result);
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
